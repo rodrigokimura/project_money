@@ -8,6 +8,7 @@ pynubank = "*"
 textual-dev = "*"
 pydantic = "*"
 pydantic-settings = "*"
+pandas = "*"
 
 [dev-packages]
 black = "*"

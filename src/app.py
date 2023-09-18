@@ -1,13 +1,11 @@
 from typing import ClassVar
 
-from pynubank import Nubank
 from textual.app import App, ComposeResult
 from textual.binding import Binding, BindingType
 from textual.screen import Screen
 from textual.widgets import Footer, Header, LoadingIndicator, Pretty
 
-from config import Config
-from models.card_statement import CardStatement
+from client import Client
 
 
 class LoadingScreen(Screen):
@@ -23,19 +21,18 @@ class NubankApp(App[None]):
     SCREENS = {"loading_screen": LoadingScreen()}
 
     def compose(self) -> ComposeResult:
-        self._setup()
-        s = self.nu.get_card_statements()[0]
-        s = CardStatement(**s)
-
-        l = Pretty(s)
+        self.client = Client()
+        self.client.load_bills()
         yield Header(show_clock=True)
-        yield l
-        yield Footer()
 
-    def _setup(self):
-        self.nu = Nubank()
-        settings = Config()
-        self.nu.authenticate_with_cert(settings.cpf, settings.password, "cert.p12")
+        # id = self.client.bills[8].id
+        # if id:
+        #     b = self.client.get_bill_details(id)
+        #     l = Pretty(b)
+        #     yield l
+
+        yield Pretty(self.client.bills[7])
+        yield Footer()
 
 
 if __name__ == "__main__":
