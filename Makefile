@@ -1,11 +1,9 @@
-logs:
-	@pipenv run textual console
-
 run:
-	@pipenv run textual run src/app.py
+	@pipenv run python src/manage.py runserver
 
-dev:
-	@pipenv run textual run src/app.py --dev
+sync:
+	@pipenv run python src/manage.py sync
+	@pipenv run python src/manage.py process
 
 lint:
 	@pipenv run black .

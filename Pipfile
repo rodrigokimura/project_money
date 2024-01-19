@@ -5,15 +5,16 @@ name = "pypi"
 
 [packages]
 pynubank = "*"
-textual-dev = "*"
 pydantic = "*"
 pydantic-settings = "*"
-pandas = "*"
+django = "*"
+django-stubs = "*"
+redis = "*"
+gunicorn = "*"
+whitenoise = "*"
+djangorestframework = "*"
 
 [dev-packages]
 black = "*"
 isort = "*"
 pytest = "*"
-
-[requires]
-python_version = "3.8"

@@ -1,2 +1,5 @@
 cert.p12
 .env
+*.sqlite3
+_static/
+card_feed.json
